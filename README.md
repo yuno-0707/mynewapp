@@ -1,4 +1,4 @@
-# RCAMS MVP (Phase 10)
+# RCAMS MVP (Phase 10.1)
 
 Beginner-friendly MVP web app for Requisition and Cash Advance Management.
 
@@ -69,6 +69,23 @@ Use email only in MVP login page:
 - approver@rcams.local
 - finance@rcams.local
 
+## 8) Test flow (end-to-end)
+1. Login as `requestor@rcams.local`.
+2. Go to **Create Request**:
+   - choose request type/payment type,
+   - choose project (or department),
+   - choose CE item for project requests,
+   - enter amount and due date,
+   - click **Create + Submit**.
+3. Login as `approver@rcams.local` → **Approval Inbox** → Approve.
+4. Login as `finance@rcams.local` → **Cash Advance Release** → Release.
+5. Login as `requestor@rcams.local` → **Liquidation**:
+   - select request,
+   - enter actual total,
+   - enter returned amount/reference,
+   - click **Submit Liquidation**.
+6. Login as `approver@rcams.local` → **Approval Inbox** → Approve liquidation.
+7. Check **Reports** page and export CSV.
 ## 8) Workflow test (quick)
 1. Login as `requestor@rcams.local`.
 2. Go to **Create Request** and create/submit request.
@@ -85,11 +102,11 @@ Run daily jobs + simulated dev email sender:
 npm run worker
 ```
 
-## 10) Security UAT
-- Requestor should mostly see own data.
-- Approver should process approvals.
-- Finance should release/process liquidation.
-- Admin should manage users/masterlists.
+## 10) Security UAT checks
+- Requestor: should only process own request workflow.
+- Approver: should process approvals.
+- Finance: should release cash advances and handle liquidation flow.
+- Admin: should access users/masterlists pages.
 
 ## API response format
 Success:
