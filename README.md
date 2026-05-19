@@ -14,6 +14,7 @@ Beginner-friendly MVP web app for Requisition and Cash Advance Management.
 - psql client
 
 ## 2) Environment
+Copy env:
 ```bash
 cp .env.example .env
 ```
@@ -61,7 +62,8 @@ npm run dev
 
 Open port **5173** in Codespaces.
 
-## 7) Test logins (email-only MVP)
+## 7) Test logins
+Use email only in MVP login page:
 - admin@rcams.local
 - requestor@rcams.local
 - approver@rcams.local
@@ -84,6 +86,15 @@ Open port **5173** in Codespaces.
    - click **Submit Liquidation**.
 6. Login as `approver@rcams.local` → **Approval Inbox** → Approve liquidation.
 7. Check **Reports** page and export CSV.
+## 8) Workflow test (quick)
+1. Login as `requestor@rcams.local`.
+2. Go to **Create Request** and create/submit request.
+3. Login as `approver@rcams.local` → **Approval Inbox** → Approve.
+4. Login as `finance@rcams.local` → **Cash Advance Release** → Release.
+5. Login as requestor → **Liquidation** → Submit liquidation.
+6. Login as approver → **Approval Inbox** → Approve liquidation.
+7. (Optional API call) finalize liquidation endpoint if needed.
+8. Go to **Reports** and load Aging/Overdue/Project totals; export CSV.
 
 ## 9) Worker
 Run daily jobs + simulated dev email sender:
